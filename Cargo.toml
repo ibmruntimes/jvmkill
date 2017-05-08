@@ -1,0 +1,18 @@
+[package]
+name = "jvmkill"
+version = "0.0.1"
+authors = [ "Glyn Normington <gnormington@pivotal.io>" ]
+description = "JVM resource exhaustion agent"
+keywords = [ "java", "jvm", "jvmti" ]
+build = "build.rs"
+
+[lib]
+#crate_type = [ "cdylib", "dylib", "rlib" ]
+
+#[dependencies]
+#libc = "0.2.*"
+#time = "0.1.*"
+#lazy_static = "0.2.*"
+
+[build-dependencies]
+bindgen = "0.24"

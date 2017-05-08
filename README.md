@@ -21,6 +21,16 @@ command and that system call can fail for large JVMs due to memory
 overcommit limits in the operating system.  This is the problem that
 motivated the development of this agent.
 
+# Rust
+
+A prototype agent written in Rust is being prototyped. To build it, issue:
+
+    cargo build
+    
+and to test it, issue:
+
+    cargo test
+    
 # Building
 
 To build the agent and run the tests, issue:
