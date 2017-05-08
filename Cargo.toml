@@ -9,8 +9,8 @@ build = "build.rs"
 [lib]
 #crate_type = [ "cdylib", "dylib", "rlib" ]
 
-#[dependencies]
-#libc = "0.2.*"
+[dependencies]
+libc = "0.2.*"
 #time = "0.1.*"
 #lazy_static = "0.2.*"
 
