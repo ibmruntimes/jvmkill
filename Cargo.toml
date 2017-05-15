@@ -7,7 +7,8 @@ keywords = [ "java", "jvm", "jvmti" ]
 build = "build.rs"
 
 [lib]
-#crate_type = [ "cdylib", "dylib", "rlib" ]
+# may be able to reduce the list below to just cdylib
+crate_type = [ "cdylib", "dylib", "rlib" ]
 
 [dependencies]
 libc = "0.2.*"
