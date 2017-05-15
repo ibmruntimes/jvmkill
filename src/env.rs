@@ -4,6 +4,7 @@ use ::jvmti::jvmtiEnv;
 
 pub trait JVMTI {}
 
+#[derive(Clone, Copy)]
 pub struct JVMTIEnv {
     jvmti: *mut jvmtiEnv
 }
