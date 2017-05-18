@@ -9,8 +9,6 @@ pub struct agentController {
     actions: Vec<Box<Action>>
 }
 
-static AGENT_CONTROLLER: Option<agentController> = None;
-
 impl agentController {
     pub fn new(ti: ::env::JVMTIEnv) -> Result<agentController, ::jvmti::jint> {
         self::heaphistogram::heapHistogram::new(ti).map(|action| {
@@ -21,6 +19,10 @@ impl agentController {
         })
     }
 }
+
+// TODO: use a raw monitor to provide the necessary synchronisation
+unsafe impl Send for agentController {}
+unsafe impl Sync for agentController {}
 
 pub trait Action {}
 
