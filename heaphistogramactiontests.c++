@@ -26,7 +26,7 @@ HeapHistogramAction* heapHistogramAction;
 
 JNIEnv* mockJNIEnv;
 
-struct jvmtiInterface_1_ mockJvmtiInterface_1_;
+struct JVMTINativeInterface_ mockJvmtiInterface_1_;
 jvmtiEnv mockJvmtiEnvStruct;
 jvmtiEnv *mockJvmtiEnv;
 
@@ -156,32 +156,32 @@ void setup() {
 
 	MockGetCapabilitiesCount = 0;
 	MockGetCapabilitiesReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->GetCapabilities = &MockGetCapabilities;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->GetCapabilities = &MockGetCapabilities;
 
 	MockAddCapabilitiesCount = 0;
 	MockAddCapabilitiesReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->AddCapabilities = &MockAddCapabilities;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->AddCapabilities = &MockAddCapabilities;
 
 	MockGetLoadedClassesCount = 0;
 	MockGetLoadedClassesReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->GetLoadedClasses = &MockGetLoadedClasses;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->GetLoadedClasses = &MockGetLoadedClasses;
 
 	MockSetTagReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->SetTag = &MockSetTag;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->SetTag = &MockSetTag;
 
 	MockGetClassSignatureCount = 0;
 	MockGetClassSignatureResult = NULL;
 	MockGetClassSignatureReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->GetClassSignature = &MockGetClassSignature;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->GetClassSignature = &MockGetClassSignature;
 
 	MockDeallocateCount = 0;
 	MockDeallocateReturnValue = JVMTI_ERROR_NONE;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->Deallocate = &MockDeallocate;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->Deallocate = &MockDeallocate;
 
 	MockFollowReferencesCount = 0;
 	MockFollowReferencesReturnValue = JVMTI_ERROR_NONE;
 	MockFollowReferencesAction = NULL;
-	((struct jvmtiInterface_1_ *)mockJvmtiEnvStruct.functions)->FollowReferences = &MockFollowReferences;
+	((struct JVMTINativeInterface_ *)mockJvmtiEnvStruct.functions)->FollowReferences = &MockFollowReferences;
 
 	mockJvmtiEnv = &mockJvmtiEnvStruct;
 
@@ -326,7 +326,7 @@ bool testHeapStatsTagsClassesReturnedByGetLoadedClasses() {
 						(MockSetTagTagsSet[1] == 2));
 
 	if (!passed) {
-		fprintf(stdout, "tags %ld %ld\n", MockSetTagTagsSet[0], MockSetTagTagsSet[1]);
+		fprintf(stdout, "tags %lld %lld\n", MockSetTagTagsSet[0], MockSetTagTagsSet[1]);
 		fprintf(stdout, "testHeapStatsTagsClassesReturnedByGetLoadedClasses FAILED\n");
 	}
 

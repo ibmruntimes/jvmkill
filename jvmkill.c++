@@ -44,6 +44,22 @@ void resourceExhausted(
 
 int setCallbacks(jvmtiEnv *jvmti) {
    jvmtiError err;
+   jvmtiCapabilities capa;
+   
+   err = jvmti->GetCapabilities(&capa);
+   if(err!=JVMTI_ERROR_NONE){
+     fprintf(stderr, "ERROR: GetPotentialCapabilities failed: %d\n", err);
+     return JNI_ERR;
+   }else {
+     capa.can_generate_resource_exhaustion_heap_events = 1;
+     capa.can_generate_resource_exhaustion_threads_events = 1;
+   }
+
+   err = jvmti->AddCapabilities(&capa);
+    if(err != JVMTI_ERROR_NONE) {
+      fprintf(stderr, "ERROR: AddCapabilities failed: %d\n", err);
+      return JNI_ERR;
+    }
 
    err = jvmti->CreateRawMonitor("jvmkillMonitor", &monitorID);
    if (err != JVMTI_ERROR_NONE) {
